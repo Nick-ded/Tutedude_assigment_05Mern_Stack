@@ -1,0 +1,136 @@
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: Arial, 'Segoe UI', sans-serif;
+}
+
+/* ── Page ── */
+.page {
+  width: 100%;
+  padding: 20px 12px 60px;
+}
+
+/* ── Title ── */
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* ── Grid — 4 equal columns, full width ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+/* ── Card — dark cell with rounded border ── */
+.card {
+  background: #111111;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Color block — square, with padding inside the card ── */
+.card__img {
+  /* use padding-top trick to enforce a perfect square */
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 ratio */
+  flex-shrink: 0;
+}
+
+.card__img-inner {
+  position: absolute;
+  inset: 8px; /* gap between border and color block */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* "600 x 600" watermark */
+.card__size-label {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: clamp(0.55rem, 1.1vw, 0.9rem);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Title strip — fixed height, never wraps ── */
+.card__title {
+  height: 38px;
+  line-height: 38px;
+  flex-shrink: 0;
+  padding: 0 10px;
+  font-size: 0.78rem;
+  color: #cccccc;
+  background: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Spinner ── */
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 0;
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  border: 5px solid #333;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error ── */
+.error-msg {
+  text-align: center;
+  color: #f87171;
+  padding: 60px 20px;
+  font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
